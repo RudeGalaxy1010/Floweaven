@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
+    [SerializeField] private Player _player;
     [SerializeField] private ExpansionArea _expansionAreaPrefab;
     private ExpansionArea[] _expansionAreas;
 
@@ -72,7 +73,11 @@ public class Ground : MonoBehaviour
 
     private void TryBuy(ExpansionArea area)
     {
-        // Checks
+        if (_player.TrySpend(MoneyConstants.CostPerExpansionCell * area.GetSize()) == false)
+        {
+            return;
+        }
+
         Unsubscribe();
         DestroyExpansionAreas();
         Expand(area.Direction);
