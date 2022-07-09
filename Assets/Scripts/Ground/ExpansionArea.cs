@@ -1,33 +1,29 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Interactable))]
+[RequireComponent(typeof(Clickable))]
 public class ExpansionArea : MonoBehaviour
 {
     public event UnityAction<ExpansionArea> Clicked;
 
     private Renderer _renderer;
-    private Interactable _interactable;
+    private Clickable _interactable;
     private Direction _direction;
 
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
-        _interactable = GetComponent<Interactable>();
+        _interactable = GetComponent<Clickable>();
     }
 
     private void OnEnable()
     {
-        _interactable.MouseEnter += ShowInfo;
-        _interactable.MouseExit += HideInfo;
-        _interactable.MouseDown += TryBuy;
+        _interactable.Cliked += TryBuy;
     }
 
     private void OnDisable()
     {
-        _interactable.MouseEnter -= ShowInfo;
-        _interactable.MouseExit -= HideInfo;
-        _interactable.MouseDown -= TryBuy;
+        _interactable.Cliked -= TryBuy;
     }
 
     public Direction Direction => _direction;
@@ -51,18 +47,6 @@ public class ExpansionArea : MonoBehaviour
         }
 
         return size * MoneyConstants.CostPerExpansionCell;
-    }
-
-    private void ShowInfo()
-    {
-        Color color = new Color(_renderer.material.color.r, _renderer.material.color.g, _renderer.material.color.b, 0.5f);
-        _renderer.material.color = color;
-    }
-
-    private void HideInfo()
-    {
-        Color color = new Color(_renderer.material.color.r, _renderer.material.color.g, _renderer.material.color.b, 0);
-        _renderer.material.color = color;
     }
 
     private void TryBuy()
