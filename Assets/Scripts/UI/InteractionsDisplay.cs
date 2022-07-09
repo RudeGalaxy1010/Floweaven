@@ -8,13 +8,13 @@ public class InteractionsDisplay : MonoBehaviour
 
     private void OnEnable()
     {
-        _interaction.IntereactionStarted += SetText;
+        _interaction.IntereactionStarted += obj => SetText(obj.GetInfo());
         _interaction.InteractionEnded += ResetText;
     }
 
     private void OnDisable()
     {
-        _interaction.IntereactionStarted -= SetText;
+        _interaction.IntereactionStarted -= obj => SetText(obj.GetInfo());
         _interaction.InteractionEnded -= ResetText;
     }
 

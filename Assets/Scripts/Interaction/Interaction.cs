@@ -4,7 +4,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Camera))]
 public class Interaction : MonoBehaviour
 {
-    public event UnityAction<string> IntereactionStarted;
+    public event UnityAction<Interactable> IntereactionStarted;
     public event UnityAction InteractionEnded;
 
     [SerializeField] private float _maxDistance;
@@ -17,6 +17,19 @@ public class Interaction : MonoBehaviour
     {
         _camera = GetComponent<Camera>();
         _isEnabled = true;
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, _maxDistance);
+
+            if (hit.collider != null && hit.collider.gameObject.TryGetComponent(out Clickable clickable))
+            {
+                clickable.Click();
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -51,7 +64,7 @@ public class Interaction : MonoBehaviour
     {
         _currentObject = interactable;
         _currentObject.ShowInteraction();
-        IntereactionStarted?.Invoke(interactable.GetInfo());
+        IntereactionStarted?.Invoke(interactable);
     }
 
     private void ResetCurrentObject()

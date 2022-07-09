@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
+    [SerializeField] private Interaction _interaction;
     [SerializeField] private Player _player;
     [SerializeField] private ExpansionArea _expansionAreaPrefab;
     private ExpansionArea[] _expansionAreas;
@@ -25,7 +26,7 @@ public class Ground : MonoBehaviour
     {
         foreach (var area in _expansionAreas)
         {
-            area.Clicked += TryBuy;
+            area.TriedToBuy += TryBuyArea;
         }
     }
 
@@ -33,7 +34,7 @@ public class Ground : MonoBehaviour
     {
         foreach (var area in _expansionAreas)
         {
-            area.Clicked -= TryBuy;
+            area.TriedToBuy -= TryBuyArea;
         }
     }
 
@@ -71,7 +72,7 @@ public class Ground : MonoBehaviour
         }
     }
 
-    private void TryBuy(ExpansionArea area)
+    private void TryBuyArea(ExpansionArea area)
     {
         if (_player.HasMoney(area.GetCost()) == false)
         {
