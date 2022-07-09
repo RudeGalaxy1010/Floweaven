@@ -73,10 +73,12 @@ public class Ground : MonoBehaviour
 
     private void TryBuy(ExpansionArea area)
     {
-        if (_player.TrySpend(MoneyConstants.CostPerExpansionCell * area.GetSize()) == false)
+        if (_player.HasMoney(area.GetCost()) == false)
         {
             return;
         }
+
+        _player.SpendMoney(area.GetCost());
 
         Unsubscribe();
         DestroyExpansionAreas();

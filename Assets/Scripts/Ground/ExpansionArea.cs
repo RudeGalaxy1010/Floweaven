@@ -37,7 +37,7 @@ public class ExpansionArea : MonoBehaviour
         _direction = direction;
     }
 
-    public int GetSize()
+    public int GetCost()
     {
         int size = -1;
 
@@ -50,7 +50,7 @@ public class ExpansionArea : MonoBehaviour
             size = (int)transform.localScale.z;
         }
 
-        return size;
+        return size * MoneyConstants.CostPerExpansionCell;
     }
 
     private void ShowInfo()

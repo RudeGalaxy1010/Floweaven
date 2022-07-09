@@ -7,15 +7,11 @@ public class Player : MonoBehaviour
 
     public int Money => _money;
 
-    public bool TrySpend(int value)
-    {
-        if (_money >= value)
-        {
-            _money -= value;
-            return true;
-        }
+    public bool HasMoney(int value) => value >= _money;
 
-        return false;
+    public void SpendMoney(int value)
+    {
+        _money -= value;
     }
 
     public void AddMoney(int value)

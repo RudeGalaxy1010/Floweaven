@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2896498841205096031}
   - component: {fileID: 3067157211521881515}
   - component: {fileID: 6889168382029598540}
+  - component: {fileID: -9150150842572916491}
   m_Layer: 0
   m_Name: Expansion Area
   m_TagString: Untagged
@@ -121,5 +122,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 069c951c656980643a57d2b4cc11fa32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-9150150842572916491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896498841205096352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a8820fa48c1594e807e4b94540c267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
