@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(ExpansionArea))]
-public class ExpansionAreaInteraction : Interactable
+public class ExpansionAreaInteractable : Interactable
 {
     private ExpansionArea _expansionArea;
     private Renderer _renderer;

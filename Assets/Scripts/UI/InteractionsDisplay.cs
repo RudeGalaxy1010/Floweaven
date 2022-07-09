@@ -6,11 +6,6 @@ public class InteractionsDisplay : MonoBehaviour
     [SerializeField] private Interaction _interaction;
     [SerializeField] private TMP_Text _text;
 
-    private void Awake()
-    {
-        ResetText();
-    }
-
     private void OnEnable()
     {
         _interaction.IntereactionStarted += SetText;
