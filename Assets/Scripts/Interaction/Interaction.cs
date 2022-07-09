@@ -6,6 +6,8 @@ public class Interaction : MonoBehaviour
 {
     public event UnityAction<Interactable> IntereactionStarted;
     public event UnityAction InteractionEnded;
+    public event UnityAction<Clickable> Clicked;
+    public event UnityAction ClickCanceled;
 
     [SerializeField] private float _maxDistance;
 
@@ -28,7 +30,12 @@ public class Interaction : MonoBehaviour
             if (hit.collider != null && hit.collider.gameObject.TryGetComponent(out Clickable clickable))
             {
                 clickable.Click();
+                Clicked?.Invoke(clickable);
             }
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            ClickCanceled?.Invoke();
         }
     }
 
